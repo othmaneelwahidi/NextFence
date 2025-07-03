@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NextFence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    
+        header {
+            background: white;
+            border-bottom: 1px solid #ddd;
+            position: relative;
+            z-index: 1000;
+        }
+    
+        .container {
+            max-width: 1400px;
+            margin: auto;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    
+        .logo img {
+            max-height: 60px;
+        }
+    
+        nav {
+            flex: 1;
+            margin-left: 40px;
+        }
+    
+        nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            justify-content: flex-end;
+            flex-wrap: nowrap;
+        }
+    
+        nav ul li {
+            position: relative;
+        }
+    
+        nav ul li a {
+            text-decoration: none;
+            color: #3F3F3F;
+            /* Charcoal Gray */
+            font-weight: 500;
+            padding: 8px 5px;
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+        }
+    
+        nav ul li a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: #006B46;
+            /* Deep Green */
+            transition: width 0.3s ease-in-out;
+        }
+    
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+    
+        nav ul li a:hover {
+            color: #006B46;
+            /* Deep Green */
+        }
+    
+        .btn-outline-turquoise {
+            padding: 10px 20px;
+            border: 1px solid #C43235;
+            /* Deep Red */
+            color: #C43235;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease-in-out;
+            background-color: transparent;
+        }
+    
+        .btn-outline-turquoise:hover {
+            background-color: #C43235;
+            color: #ffffff;
+        }
+    
+        .hamburger {
+            display: none;
+            width: 30px;
+            height: 25px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+    
+        .hamburger span {
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            background: #3F3F3F;
+            left: 0;
+            transition: all 0.3s ease-in-out;
+        }
+    
+        .hamburger span:nth-child(1) {
+            top: 0;
+        }
+    
+        .hamburger span:nth-child(2) {
+            top: 11px;
+        }
+    
+        .hamburger span:nth-child(3) {
+            bottom: 0;
+        }
+    
+        #menu-toggle:checked+.hamburger span:nth-child(1) {
+            transform: rotate(45deg);
+            top: 11px;
+        }
+    
+        #menu-toggle:checked+.hamburger span:nth-child(2) {
+            opacity: 0;
+        }
+    
+        #menu-toggle:checked+.hamburger span:nth-child(3) {
+            transform: rotate(-45deg);
+            bottom: 11px;
+        }
+    
+        #menu-toggle {
+            display: none;
+        }
+    
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+    
+            nav {
+                width: 100%;
+                margin-left: 0;
+            }
+    
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: white;
+                margin-top: 20px;
+                padding: 0;
+            }
+    
+            #menu-toggle:checked+.hamburger+nav ul {
+                display: flex;
+            }
+    
+            nav ul li {
+                width: 100%;
+                text-align: left;
+            }
+    
+            nav ul li a {
+                padding: 15px;
+                display: block;
+            }
+    
+            .btn-outline-turquoise {
+                width: 100%;
+                text-align: center;
+                margin: 10px 0;
+            }
+        }
+        .hero {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  background: url('hero.png') center/cover no-repeat;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* black transparent overlay */
+  backdrop-filter: blur(3px); /* subtle blur effect */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-content {
+  text-align: center;
+  color: white;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero-btn {
+  padding: 12px 30px;
+  background-color: #C43235; /* Deep red from your brand */
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.hero-btn:hover {
+  background-color: #9f2628;
+}
+.social-sidebar {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 1001;
+}
+
+.social-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #3F3F3F; /* neutral background */
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  font-size: 18px;
+}
+
+.social-icon:hover {
+  background-color: #C43235; /* NextFence red on hover */
+}
+
+/* Optional brand-specific colors */
+.facebook:hover { background-color: #1877F2; }
+.instagram:hover { background-color: #E1306C; }
+.linkedin:hover { background-color: #0A66C2; }
+.application-domains {
+  padding: 60px 30px;
+  text-align: center;
+}
+
+.section-title h2 {
+  color:#8c0331;
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.section-title p {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 40px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.grid-item {
+  position: relative;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  overflow: hidden;
+}
+
+.grid-item::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.grid-item i,
+.grid-item span {
+  z-index: 2;
+}
+
+.grid-item i {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+.about-section {
+  padding: 60px 30px;
+  background-color: #fff;
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  max-width: 1200px;
+  margin: auto;
+  flex-wrap: wrap;
+}
+
+.about-text {
+  flex: 1;
+  min-width: 300px;
+}
+
+.about-text h2 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.about-text p {
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.btn-black {
+  display: inline-block;
+  padding: 14px 28px;
+  background-color: #000;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+}
+
+.btn-black:hover {
+  background-color: #333;
+}
+
+.about-image {
+  flex: 1;
+  min-width: 300px;
+  text-align: center;
+}
+
+.about-image img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+ /* Layout */
+ .container {
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--darker), var(--dark));
+            background-color: #dcdcdc;
+            color: var(--lighter);
+            padding: 5rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column {
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-column h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        .footer-column p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            display: inline-block;
+            transition: var(--transition);
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .footer-links a::before {
+            content: '→';
+            position: absolute;
+            left: -5px;
+            opacity: 0;
+            transition: var(--transition);
+            color: var(--primary);
+        }
+
+        .footer-links a:hover {
+            color: var(--lighter);
+            padding-left: 1.5rem;
+        }
+
+        .footer-links a:hover::before {
+            left: 0;
+            opacity: 1;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            margin-top: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            color: var(--gray);
+        }
+
+        .contact-item i {
+            margin-right: 0.75rem;
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-top: 3px;
+        }
+
+        .contact-item span {
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--lighter);
+            transition: var(--transition);
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+        .social-link::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .social-link:hover::after {
+            opacity: 1;
+        }
+
+        .social-link i {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            margin-top: 1.5rem;
+        }
+
+        .newsletter p {
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 0.85rem 1.25rem;
+            border-radius: 50px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--lighter);
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .newsletter-input::placeholder {
+            color: var(--gray);
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 2px var(--primary-light);
+        }
+
+        .newsletter-btn {
+            padding: 0.85rem 1.75rem;
+            border-radius: 50px;
+            border: none;
+            background: var(--primary);
+            color: var(--lighter);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            flex-shrink: 0;
+        }
+
+        .newsletter-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Copyright */
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        .copyright a {
+            color: var(--primary-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .copyright a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: var(--shadow-md);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-5px);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .footer-column {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .footer-column:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .footer-column:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .footer-column:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .footer-column:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .footer-grid {
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            footer {
+                padding: 3rem 0 2rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-input,
+            .newsletter-btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-column h3::after {
+                width: 40px;
+            }
+        }
+    </style>
+    
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="#"><img src="NextFence.png" alt="Logo"></a>
+            </div>
+
+            <input type="checkbox" id="menu-toggle" />
+            <label for="menu-toggle" class="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </label>
+
+            <nav>
+                <ul>
+                    <li><a href="#">Accueil</a></li>
+                    <li><a href="#">Produits</a></li>
+                    <li><a href="#">Configurateur</a></li>
+                    <li><a href="#">Réalisations</a></li>
+                    <li><a href="#">L’entreprise</a></li>
+                    <li><a href="#">Carrières</a></li>
+                    <li><a href="#">Blog / Actualités</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <section><a href="#" class="btn-outline-turquoise">ESPACE PROS</a></section>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="hero">
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <h1>Votre Clôture Moderne</h1>
+                <a href="#contact" class="hero-btn">Demander un devis</a>
+            </div>
+        </div>
+    </section>
+    <div class="social-sidebar">
+        <a href="https://facebook.com" target="_blank" class="social-icon facebook" aria-label="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" class="social-icon instagram" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://linkedin.com" target="_blank" class="social-icon linkedin" aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </div>
+    <section class="application-domains">
+        <div class="section-title">
+            <h2>Nos domaines d'application</h2>
+            <p>Découvrez nos produits à travers leurs usages et trouvez celui qui correspond à vos besoins.</p>
+        </div>
+    
+        <div class="grid-container">
+            <div class="grid-item" style="background-image: url('images/agricoles.jpg');">
+                <i class="fas fa-tractor"></i>
+                <span>USAGES AGRICOLES</span>
+            </div>
+            <div class="grid-item" style="background-image: url('images/residentiels.jpg');">
+                <i class="fas fa-home"></i>
+                <span>USAGES RÉSIDENTIELS</span>
+            </div>
+            <div class="grid-item" style="background-image: url('images/industriels.jpg');">
+                <i class="fas fa-industry"></i>
+                <span>USAGES INDUSTRIELS</span>
+            </div>
+            <div class="grid-item" style="background-image: url('images/occultants.jpg');">
+                <i class="fas fa-align-justify"></i>
+                <span>OCCULTANTS</span>
+            </div>
+            <div class="grid-item" style="background-image: url('images/sportifs.jpg');">
+                <i class="fas fa-baseball-ball"></i>
+                <span>ESPACES SPORTIFS</span>
+            </div>
+            <div class="grid-item" style="background-image: url('images/securite.jpg');">
+                <i class="fas fa-shield-alt"></i>
+                <span>SÉCURITÉ ET DISSUASION</span>
+            </div>
+            <div class="grid-item" style="background-image: url('images/naturels.jpg');">
+                <i class="fas fa-tree"></i>
+                <span>ESPACES NATURELS</span>
+            </div>
+            <div class="grid-item" style="background-image: url('images/publics.jpg');">
+                <i class="fas fa-users"></i>
+                <span>ESPACES PUBLICS</span>
+            </div>
+            <div class="grid-item" style="background-image: url('images/routiers.jpg');">
+                <i class="fas fa-road"></i>
+                <span>AXES ROUTIERS</span>
+            </div>
+        </div>
+    </section>
+    <section class="about-section">
+        <div class="about-container">
+          <div class="about-text">
+            <h2>NextFence</h2>
+            <p>Notre entreprise dispose d’une vaste expérience dans la conception et la fabrication de solutions sur-mesure pour répondre à vos besoins spécifiques en clôture au Maroc. Nous travaillons en étroite collaboration avec nos clients pour garantir que chaque produit soit fabriqué avec les matériaux de la plus haute qualité, répondant ainsi aux normes de qualité les plus élevées.</p>
+            <p>Nous nous engageons à fournir à nos clients un service exceptionnel et des produits de qualité supérieure qui répondent à leurs exigences uniques.</p>
+            <p>Notre société NextFence dispose d’une équipe de professionnels expérimentés qui sont dédiés à assurer que nos produits répondent aux plus hauts standards de qualité et de sécurité.</p>
+            <a href="#" class="btn-black">Lire plus</a>
+          </div>
+          <div class="about-image">
+            <img src="right_side_image.png" alt="NextFence">
+          </div>
+        </div>
+      </section>
+   
+             
+      </main> 
+      
+      <!-- Pied de page -->
+      <footer id="footer">
+        <div class="container">
+          <div class="footer-grid">
+            <!-- Colonne 1 - À propos -->
+            <div class="footer-column">
+              <h3>NextFence</h3>
+              <p>Notre mission est d'apporter paix et sérénité dans votre vie quotidienne grâce à des solutions de
+                bien-être innovantes.</p>
+      
+              <div class="social-links">
+                <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+              </div>
+            </div>
+      
+            <!-- Colonne 2 - Liens rapides -->
+            <div class="footer-column">
+              <h3>Navigation</h3>
+              <ul class="footer-links">
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Nos services</a></li>
+                <li><a href="#">Méthodologie</a></li>
+                <li><a href="#">Témoignages</a></li>
+                <li><a href="#">Événements</a></li>
+                <li><a href="#">Blog</a></li>
+              </ul>
+            </div>
+      
+            <!-- Colonne 3 - Support -->
+            <div class="footer-column">
+              <h3>Support</h3>
+              <ul class="footer-links">
+                <li><a href="#">Centre d'aide</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Contactez-nous</a></li>
+                <li><a href="#">Politique de confidentialité</a></li>
+                <li><a href="#">CGU</a></li>
+                <li><a href="#">Accessibilité</a></li>
+              </ul>
+            </div>
+      
+            <!-- Colonne 4 - Contact -->
+            <div class="footer-column">
+              <h3>Contact</h3>
+      
+              <div class="contact-info">
+                <div class="contact-item">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span>123 Rue du Bien-être<br>75000 Paris, France</span>
+                </div>
+      
+                <div class="contact-item">
+                  <i class="fas fa-phone-alt"></i>
+                  <span>+33 1 23 45 67 89<br>Lun-Ven, 9h-18h</span>
+                </div>
+      
+                <div class="contact-item">
+                  <i class="fas fa-envelope"></i>
+                  <span>contact@NextFence.com<br>support@NextFence.com</span>
+                </div>
+              </div>
+      
+          
+            </div>
+          </div>
+      
+          <div class="copyright">
+            <p>&copy;
+              <script>document.write(new Date().getFullYear())</script> NextFence. Tous droits réservés. | <a href="#">Mentions
+                légales</a> | <a href="#">Politique des cookies</a>
+            </p>
+          </div>
+        </div>
+      </footer>
+      
+      <!-- Bouton retour en haut -->
+      <div class="back-to-top" id="backToTop" aria-label="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+      </div>
+
+</body>
+
+</html>
