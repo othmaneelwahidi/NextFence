@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Calcul Surface avec Leaflet</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- Leaflet Draw CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-draw/dist/leaflet.draw.css" />
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        #map {
+            width: 100%;
+            height: 100vh;
+        }
+
+        #info {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            z-index: 1000;
+            background-color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            font-size: 16px;
+        }
+
+        #reset {
+            margin-top: 10px;
+            background-color: #c43235;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #reset:hover {
+            background-color: #a32020;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="info">
+        Surface : <span id="surface">0</span> m² <br>
+        <button id="reset">Réinitialiser</button>
+    </div>
+
+    <div id="map"></div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!-- Leaflet Draw JS -->
+    <script src="https://unpkg.com/leaflet-draw/dist/leaflet.draw.js"></script>
+    <!-- Turf.js for area calculation -->
+    <script src="https://unpkg.com/@turf/turf/turf.min.js"></script>
+
+    <script>
+        // Initialisation de la carte
+        const map = L.map('map').setView([33.5898, -7.6038], 16); // Casablanca
+
+        // Fond de carte
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Groupe pour les formes dessinées
+        const drawnItems = new L.FeatureGroup();
+        map.addLayer(drawnItems);
+
+        // Contrôle de dessin
+        const drawControl = new L.Control.Draw({
+            draw: {
+                polygon: {
+                    allowIntersection: false,
+                    showArea: true,
+                    shapeOptions: {
+                        color: '#006B46'
+                    }
+                },
+                polyline: false,
+                rectangle: false,
+                circle: false,
+                marker: false,
+                circlemarker: false
+            },
+            edit: {
+                featureGroup: drawnItems
+            }
+        });
+        map.addControl(drawControl);
+
+        // Gestion du dessin
+        map.on(L.Draw.Event.CREATED, function (e) {
+            drawnItems.clearLayers(); // Supprime les anciens
+            const layer = e.layer;
+            drawnItems.addLayer(layer);
+
+            const geojson = layer.toGeoJSON();
+            const area = turf.area(geojson); // Surface en m²
+            document.getElementById('surface').textContent = area.toFixed(2);
+        });
+
+        // Réinitialiser
+        document.getElementById('reset').addEventListener('click', () => {
+            drawnItems.clearLayers();
+            document.getElementById('surface').textContent = '0';
+        });
+    </script>
+
+</body>
+
+</html>

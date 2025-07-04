@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grillages</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    
+        header {
+    background: white;
+    border-bottom: 1px solid #ddd;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+    
+        .container {
+            max-width: 1400px;
+            margin: auto;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    
+        .logo img {
+            max-height: 60px;
+        }
+    
+        nav {
+            flex: 1;
+            margin-left: 40px;
+        }
+    
+        nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            justify-content: flex-end;
+            flex-wrap: nowrap;
+        }
+    
+        nav ul li {
+            position: relative;
+        }
+    
+        nav ul li a {
+            text-decoration: none;
+            color: #3F3F3F;
+            /* Charcoal Gray */
+            font-weight: 500;
+            padding: 8px 5px;
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+        }
+    
+        nav ul li a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: #006B46;
+            /* Deep Green */
+            transition: width 0.3s ease-in-out;
+        }
+    
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+    
+        nav ul li a:hover {
+            color: #006B46;
+            /* Deep Green */
+        }
+    
+        .btn-outline-turquoise {
+            padding: 10px 20px;
+            border: 1px solid #C43235;
+            /* Deep Red */
+            color: #C43235;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease-in-out;
+            background-color: transparent;
+        }
+    
+        .btn-outline-turquoise:hover {
+            background-color: #C43235;
+            color: #ffffff;
+        }
+     
+      /* Navigation wrapper */
+      .dropdown-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-wrapper > a {
+      text-decoration: none;
+      padding: 15px 20px;
+      display: inline-block;
+
+      color: rgb(44, 44, 44);
+    }
+
+    /* Mega Menu */
+    .mega-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 1000px;
+      background-color: #f5f5f5;
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      z-index: 999;
+      border-radius: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 20px;
+    }
+
+    .dropdown-wrapper:hover .mega-menu {
+      display: flex;
+    }
+
+    .mega-item {
+      width: 150px;
+      text-align: center;
+      cursor: pointer;
+      background: white;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+    }
+
+    .mega-item:hover {
+      transform: translateY(-3px);
+    }
+
+    .mega-item img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+    }
+
+    .mega-item p {
+      font-size: 14px;
+      color: #333;
+      margin: 10px 0;
+      padding: 0 5px;
+    }
+
+    /* Hide all items beyond 7 by default */
+    .mega-item:nth-child(n+8) {
+      display: none;
+    }
+
+    /* Show all when expanded */
+    .mega-menu.expanded .mega-item {
+      display: block !important;
+    }
+
+        .hamburger {
+            display: none;
+            width: 30px;
+            height: 25px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+    
+        .hamburger span {
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            background: #3F3F3F;
+            left: 0;
+            transition: all 0.3s ease-in-out;
+        }
+    
+        .hamburger span:nth-child(1) {
+            top: 0;
+        }
+    
+        .hamburger span:nth-child(2) {
+            top: 11px;
+        }
+    
+        .hamburger span:nth-child(3) {
+            bottom: 0;
+        }
+    
+        #menu-toggle:checked+.hamburger span:nth-child(1) {
+            transform: rotate(45deg);
+            top: 11px;
+        }
+    
+        #menu-toggle:checked+.hamburger span:nth-child(2) {
+            opacity: 0;
+        }
+    
+        #menu-toggle:checked+.hamburger span:nth-child(3) {
+            transform: rotate(-45deg);
+            bottom: 11px;
+        }
+    
+        #menu-toggle {
+            display: none;
+        }
+    
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+    
+            nav {
+                width: 100%;
+                margin-left: 0;
+            }
+    
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: white;
+                margin-top: 20px;
+                padding: 0;
+            }
+    
+            #menu-toggle:checked+.hamburger+nav ul {
+                display: flex;
+            }
+    
+            nav ul li {
+                width: 100%;
+                text-align: left;
+            }
+    
+            nav ul li a {
+                padding: 15px;
+                display: block;
+            }
+    
+            .btn-outline-turquoise {
+                width: 100%;
+                text-align: center;
+                margin: 10px 0;
+            }
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 110px;
+            background-color: #0b1e24;
+            height: 100vh;
+            position: fixed;
+            top: 94px;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding-top: 20px;
+            transition: width 0.3s ease;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .sidebar:hover {
+            width: 300px;
+        }
+
+        .sidebar .item {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 15px 20px;
+            cursor: pointer;
+            color: white;
+            transition: background 0.3s ease;
+        }
+
+        .sidebar .item:hover {
+            background-color: #5d5d5d;
+        }
+
+        .sidebar .item img {
+            width: 70px;
+            margin-right: 10px;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+
+        .sidebar .item.active img,
+        .sidebar .item:hover img {
+            filter: none;
+        }
+
+        .sidebar .label {
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar:hover .label {
+            opacity: 1;
+        }
+
+        /* Main content */
+        .main {
+            margin-left: 80px;
+            padding: 40px;
+            flex-grow: 1;
+            transition: margin-left 0.3s ease;
+        }
+
+        .sidebar:hover~.main {
+            margin-left: 200px;
+        }
+
+        .title {
+            font-size: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 800;
+            color: #8e1d23;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .grid-item {
+            position: relative;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .grid-item span {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 4px 10px;
+            font-size: 13px;
+            border-radius: 3px;
+        }
+        .cta-section {
+      position: relative;
+      background-image: url('https://via.placeholder.com/1600x600'); /* Replace with your blurred background */
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+    }
+
+    .cta-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.4); /* Optional dark overlay */
+      backdrop-filter: blur(5px); /* Adds blur to the background */
+      z-index: 1;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 2;
+      padding: 40px;
+      border: 1px solid white;
+      max-width: 700px;
+      width: 90%;
+    }
+
+    .cta-content h2 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .cta-content p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .cta-button {
+      padding: 12px 30px;
+      border: 1px solid white;
+      color: white;
+      background: transparent;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+      text-decoration: none;
+    }
+
+    .cta-button:hover {
+      background-color: white;
+      color: #006B46;
+    }
+
+    @media (max-width: 768px) {
+      .cta-content h2 {
+        font-size: 24px;
+      }
+
+      .cta-content p {
+        font-size: 16px;
+      }
+    }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="#"><img src="NextFence.png" alt="Logo"></a>
+            </div>
+    
+            <input type="checkbox" id="menu-toggle" />
+            <label for="menu-toggle" class="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </label>
+    
+            <nav>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li class="dropdown-wrapper">
+                        <a href="produit.html">Produits</a>
+                        <div class="mega-menu" id="megaMenu">
+                            <!-- 9 Product Items -->
+                            <div class="mega-item" onclick="expandMenu()">
+                                <img src="https://via.placeholder.com/150?text=Fil+barbelé" alt="Fil barbelé" />
+                                <p>Fil barbelé ou ronce artificielle</p>
+                            </div>
+                            <div class="mega-item" onclick="expandMenu()">
+                                <img src="https://via.placeholder.com/150?text=Simple+Torsion"
+                                    alt="Grillage simple torsion" />
+                                <p>Grillage simple torsion</p>
+                            </div>
+                            <div class="mega-item" onclick="expandMenu()">
+                                <img src="https://via.placeholder.com/150?text=Plastifié" alt="Grillage plastifié" />
+                                <p>Grillage soudé plastifié</p>
+                            </div>
+                            <div class="mega-item" onclick="expandMenu()">
+                                <img src="https://via.placeholder.com/150?text=Grillage+ondulé" alt="Grillage ondulé" />
+                                <p>Grillage ondulé</p>
+                            </div>
+                            <div class="mega-item" onclick="expandMenu()">
+                                <img src="https://via.placeholder.com/150?text=Grillage+Noue" alt="Grillage noué" />
+                                <p>Grillage noué</p>
+                            </div>
+                            <div class="mega-item" onclick="expandMenu()">
+                                <img src="https://via.placeholder.com/150?text=Grillage+Lourd" alt="Grillage soudé lourd" />
+                                <p>Grillage soudé lourd</p>
+                            </div>
+                            <div class="mega-item" onclick="expandMenu()">
+                                <img src="https://via.placeholder.com/150?text=Triple+Torsion" alt="Triple torsion" />
+                                <p>Grillage triple torsion</p>
+                            </div>
+                            <!-- Hidden initially -->
+                            <div class="mega-item">
+                                <img src="https://via.placeholder.com/150?text=Volière" alt="Grillage Volière" />
+                                <p>Grillage Volière</p>
+                            </div>
+                            <div class="mega-item">
+                                <img src="https://via.placeholder.com/150?text=Autre" alt="Autre" />
+                                <p>Autres produits</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="configue.html">Configurateur</a></li>
+                    <li><a href="#">Réalisations</a></li>
+                    <li><a href="about.html">L’entreprise</a></li>
+                    <li><a href="#">Carrières</a></li>
+                    <li><a href="#">Blog / Actualités</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <section><a href="#" class="btn-outline-turquoise">ESPACE PROS</a></section>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <br><br><br><br><br>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="item active" onclick="loadImages(1, this)">
+            <img src="cloture.png" />
+            <span class="label">Clôtures Techniques </span>
+        </div>
+        <div class="item active" onclick="loadImages(2, this)">
+            <img src="icon-cloture.png" />
+            <span class="label">Clôtures occultantes</span>
+        </div>
+        <div class="item" onclick="loadImages(3, this)">
+            <img src="equipement-sportif.png" />
+            <span class="label">Équipement Sportif</span>
+        </div>
+        <div class="item" onclick="loadImages(4, this)">
+            <img src="grillage.png" />
+            <span class="label">Grillage</span>
+        </div>
+        <div class="item" onclick="loadImages(5, this)">
+            <img src="securite.png" />
+            <span class="label">Sécurité</span>
+        </div>
+        <div class="item" onclick="loadImages(6, this)">
+            <img src="panneaux.png" />
+            <span class="label">Panneaux Régides</span>
+        </div>
+        <div class="item" onclick="loadImages(7, this)">
+            <img src="porte.png" />
+            <span class="label">Portillons et Portails</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <h2 class="title" id="categoryTitle">Clôtures classiques</h2>
+        <div id="imageGrid" class="grid">
+            <!-- JS will load content here -->
+        </div>
+    </div>
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Un conseil, une demande de devis ?</h2>
+            <p>Nos équipes sont à votre disposition pour répondre à vos projets</p>
+            <a href="contact.html" class="cta-button">Contactez-nous</a>
+        </div>
+        </section>
+    <!-- JS Script -->
+    <script>
+        const data = {
+            1: {
+                title: "Clôtures classiques",
+                items: [
+                    { src: "https://via.placeholder.com/300x150?text=Barbelé", text: "Fil Barbelé" },
+                    { src: "https://via.placeholder.com/300x150?text=Simple+Torsion", text: "Grillage Simple Torsion" },
+                    { src: "https://via.placeholder.com/300x150?text=Plastifié", text: "Grillage Soudé Plastifié" }
+                ]
+            },
+            2: {
+                title: "Grillage agricole",
+                items: [
+                    { src: "https://via.placeholder.com/300x150?text=Ondulé", text: "Grillage Ondulé" },
+                    { src: "https://via.placeholder.com/300x150?text=Moutons", text: "Grillage à Moutons" },
+                    { src: "https://via.placeholder.com/300x150?text=Lourd", text: "Grillage Soudé Lourd" }
+                ]
+            },
+            3: {
+                title: "Clôtures spéciales",
+                items: [
+                    { src: "https://via.placeholder.com/300x150?text=Volière", text: "Le Grillage Volière" },
+                    { src: "https://via.placeholder.com/300x150?text=X+Cruz", text: "Le Grillage en X 'CRUZ'" },
+                    { src: "https://via.placeholder.com/300x150?text=Safari", text: "Grillage Safari" }
+                ]
+            }
+        };
+
+        function loadImages(type, element) {
+            const grid = document.getElementById("imageGrid");
+            const title = document.getElementById("categoryTitle");
+            const selected = data[type];
+
+            title.textContent = selected.title;
+            grid.innerHTML = "";
+
+            selected.items.forEach(item => {
+                grid.innerHTML += `
+          <div class="grid-item">
+            <img src="${item.src}" alt="${item.text}" />
+            <span>${item.text}</span>
+          </div>
+        `;
+            });
+
+            document.querySelectorAll('.sidebar .item').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        // Load default
+        window.onload = () => {
+            loadImages(1, document.querySelector('.sidebar .item'));
+        };
+    </script>
+</body>
+
+</html>
