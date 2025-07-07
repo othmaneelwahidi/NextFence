@@ -233,45 +233,77 @@
         }
     
         @media (max-width: 768px) {
-            .hamburger {
-                display: block;
-            }
-    
-            nav {
-                width: 100%;
-                margin-left: 0;
-            }
-    
-            nav ul {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                background: white;
-                margin-top: 20px;
-                padding: 0;
-            }
-    
-            #menu-toggle:checked+.hamburger+nav ul {
-                display: flex;
-            }
-    
-            nav ul li {
-                width: 100%;
-                text-align: left;
-            }
-    
-            nav ul li a {
-                padding: 15px;
-                display: block;
-            }
-    
-            .btn-outline-turquoise {
-                width: 100%;
-                text-align: center;
-                margin: 10px 0;
-            }
-        }
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 10px 20px;
+  }
+  .container {
+        padding: 24px 1.5rem;
+    }
+  .hamburger {
+    display: block;
+    margin-bottom: 10px;
+  }
 
+  nav {
+    width: 100%;
+    margin-top: 0;
+    max-height: 80vh; /* Limit nav height to 80% of screen */
+    overflow-y: auto;  /* Enable vertical scrolling */
+  }
+
+  nav ul {
+    flex-direction: column;
+    width: 100%;
+    background: white;
+    display: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  nav ul li {
+    width: 100%;
+    text-align: left;
+  }
+
+  nav ul li a {
+    padding: 15px 20px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  nav ul li:last-child a.btn-outline-turquoise {
+    margin-top: 10px;
+  }
+
+  .btn-outline-turquoise {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+  }
+
+  .dropdown-wrapper:hover .mega-menu {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+    padding: 10px;
+    flex-wrap: wrap;
+    background: #f8f8f8;
+  }
+
+  .mega-menu {
+    width: 100%;
+  }
+}
+input[type=checkbox] + label {
+    color: #ccc;
+    font-style: italic;
+    margin-left: 92%;
+    margin-top: -11%;
+}
         /* Sidebar */
         .sidebar {
             width: 110px;
@@ -511,10 +543,10 @@
                         </div>
                     </li>
                     <li><a href="configue.html">Configurateur</a></li>
-                    <li><a href="#">Réalisations</a></li>
+                    <li><a href="realisation.html">Réalisations</a></li>
                     <li><a href="about.html">L’entreprise</a></li>
-                    <li><a href="#">Carrières</a></li>
-                    <li><a href="blog.htm">Blog / Actualités</a></li>
+                    <li><a href="cariere.html">Carrières</a></li>
+                    <li><a href="blog.html">Blog / Actualités</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <section><a href="#" class="btn-outline-turquoise">ESPACE PROS</a></section>
                 </ul>
@@ -624,5 +656,16 @@
         };
     </script>
 </body>
+<script>
+    const toggle = document.getElementById("menu-toggle");
+    const nav = document.querySelector("nav ul");
 
+    toggle.addEventListener("change", function () {
+        if (this.checked) {
+            nav.style.display = "flex";
+        } else {
+            nav.style.display = "none";
+        }
+    });
+</script>
 </html>

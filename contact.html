@@ -3,83 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <title>Contact</title>
     <style>
-         /* Navigation wrapper */
-      .dropdown-wrapper {
-      position: relative;
-      display: inline-block;
-    }
+        .hero {
+    position: relative;
+    width: 100%;
+    height: 66vh;
+    background: url(hero2.png) center / cover no-repeat;
+}
 
-    .dropdown-wrapper > a {
-      text-decoration: none;
-      padding: 15px 20px;
-      display: inline-block;
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 
-      color: rgb(44, 44, 44);
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    /* Mega Menu */
-    .mega-menu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 1000px;
-      background-color: #f5f5f5;
-      padding: 30px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-      z-index: 999;
-      border-radius: 8px;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      gap: 20px;
-    }
-
-    .dropdown-wrapper:hover .mega-menu {
-      display: flex;
-    }
-
-    .mega-item {
-      width: 150px;
-      text-align: center;
-      cursor: pointer;
-      background: white;
-      border-radius: 6px;
-      overflow: hidden;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      transition: transform 0.2s;
-    }
-
-    .mega-item:hover {
-      transform: translateY(-3px);
-    }
-
-    .mega-item img {
-      width: 100%;
-      height: 100px;
-      object-fit: cover;
-    }
-
-    .mega-item p {
-      font-size: 14px;
-      color: #333;
-      margin: 10px 0;
-      padding: 0 5px;
-    }
-
-    /* Hide all items beyond 7 by default */
-    .mega-item:nth-child(n+8) {
-      display: none;
-    }
-
-    /* Show all when expanded */
-    .mega-menu.expanded .mega-item {
-      display: block !important;
-    }
-
-    
-        * {
+          * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -119,7 +67,7 @@
             list-style: none;
             display: flex;
             align-items: center;
-            gap: 24px;
+            gap: 20px;
             justify-content: flex-end;
             flex-wrap: nowrap;
         }
@@ -227,136 +175,167 @@
         }
     
         @media (max-width: 768px) {
-            .hamburger {
-                display: block;
-            }
-    
-            nav {
-                width: 100%;
-                margin-left: 0;
-            }
-    
-            nav ul {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                background: white;
-                margin-top: 20px;
-                padding: 0;
-            }
-    
-            #menu-toggle:checked+.hamburger+nav ul {
-                display: flex;
-            }
-    
-            nav ul li {
-                width: 100%;
-                text-align: left;
-            }
-    
-            nav ul li a {
-                padding: 15px;
-                display: block;
-            }
-    
-            .btn-outline-turquoise {
-                width: 100%;
-                text-align: center;
-                margin: 10px 0;
-            }
-        }
-    
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 10px 20px;
+  }
+  .container {
+        padding: 24px 1.5rem;
+    }
+  .hamburger {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  nav {
+    width: 100%;
+    margin-top: 0;
+    max-height: 80vh; /* Limit nav height to 80% of screen */
+    overflow-y: auto;  /* Enable vertical scrolling */
+  }
+
+  nav ul {
+    flex-direction: column;
+    width: 100%;
+    background: white;
+    display: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  nav ul li {
+    width: 100%;
+    text-align: left;
+  }
+
+  nav ul li a {
+    padding: 15px 20px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  nav ul li:last-child a.btn-outline-turquoise {
+    margin-top: 10px;
+  }
+
+  .btn-outline-turquoise {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+  }
+
+  .dropdown-wrapper:hover .mega-menu {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+    padding: 10px;
+    flex-wrap: wrap;
+    background: #f8f8f8;
+  }
+
+  .mega-menu {
+    width: 100%;
+  }
+}
+input[type=checkbox] + label {
+    color: #ccc;
+    font-style: italic;
+    margin-left: 92%;
+    margin-top: -11%;
+}
         .contact-container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-    
-        .contact-header {
-            text-align: center;
-        }
-    
-        .contact-header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            color: #333;
-        }
-    
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-    
-        .info-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background: #fff;
-            padding: 20px;
-            border-radius: 12px;
-            transition: transform 0.2s;
-        }
-    
-        .info-item:hover {
-            transform: translateY(-2px);
-        }
-    
-        .info-item i {
-            font-size: 1.5rem;
-            color: #007BFF;
-        }
-    
-        .info-text {
-            font-size: 1.1rem;
-            color: #444;
-        }
-    
-        @media (min-width: 600px) {
-            .contact-info {
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: space-between;
-            }
-    
-            .info-item {
-                width: 48%;
-            }
-        }
-    
-        @media (min-width: 900px) {
-            .info-item {
-                width: 30%;
-            }
-        }
-    
-        /* Contact Info */
-        .contact-info {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .contact-header {
+      text-align: center;
+    }
+
+    .contact-header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      color: #333;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      transition: transform 0.2s;
+    }
+
+    .info-item:hover {
+      transform: translateY(-2px);
+    }
+
+    .info-item i {
+      font-size: 1.5rem;
+      color: #007BFF;
+    }
+
+    .info-text {
+      font-size: 1.1rem;
+      color: #444;
+    }
+
+    @media (min-width: 600px) {
+      .contact-info {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .info-item {
+        width: 48%;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .info-item {
+        width: 30%;
+      }
+    }
+     /* Contact Info */
+     .contact-info {
             margin-top: 1rem;
         }
-    
+
         .contact-item {
             display: flex;
             align-items: flex-start;
             margin-bottom: 1rem;
             color: var(--gray);
         }
-    
+
         .contact-item i {
             margin-right: 0.75rem;
             color: var(--primary);
             font-size: 1.1rem;
             margin-top: 3px;
         }
-    
+
         .contact-item span {
             font-size: 0.95rem;
             line-height: 1.5;
         }
-    
+
         /* Social Links */
         .social-links {
             display: flex;
@@ -364,7 +343,7 @@
             margin-top: 1.5rem;
             flex-wrap: wrap;
         }
-    
+
         .social-link {
             width: 42px;
             height: 42px;
@@ -380,7 +359,7 @@
             overflow: hidden;
             text-decoration: none;
         }
-    
+
         .social-link::after {
             content: '';
             position: absolute;
@@ -392,36 +371,36 @@
             opacity: 0;
             transition: var(--transition);
         }
-    
+
         .social-link:hover {
             transform: translateY(-3px);
             box-shadow: var(--shadow-md);
         }
-    
+
         .social-link:hover::after {
             opacity: 1;
         }
-    
+
         .social-link i {
             position: relative;
             z-index: 1;
         }
-    
+
         /* Newsletter */
         .newsletter {
             margin-top: 1.5rem;
         }
-    
+
         .newsletter p {
             margin-bottom: 1rem;
         }
-    
+
         .newsletter-form {
             display: flex;
             flex-wrap: wrap;
             gap: 0.75rem;
         }
-    
+
         .newsletter-input {
             flex: 1;
             min-width: 200px;
@@ -433,17 +412,17 @@
             font-size: 0.95rem;
             transition: var(--transition);
         }
-    
+
         .newsletter-input::placeholder {
             color: var(--gray);
         }
-    
+
         .newsletter-input:focus {
             outline: none;
             background: rgba(255, 255, 255, 0.15);
             box-shadow: 0 0 0 2px var(--primary-light);
         }
-    
+
         .newsletter-btn {
             padding: 0.85rem 1.75rem;
             border-radius: 50px;
@@ -456,13 +435,13 @@
             font-size: 0.95rem;
             flex-shrink: 0;
         }
-    
+
         .newsletter-btn:hover {
             background: var(--primary-dark);
             transform: translateY(-2px);
             box-shadow: var(--shadow-sm);
         }
-    
+
         /* Copyright */
         .copyright {
             text-align: center;
@@ -472,18 +451,18 @@
             color: var(--gray);
             font-size: 0.85rem;
         }
-    
+
         .copyright a {
             color: var(--primary-light);
             text-decoration: none;
             transition: var(--transition);
         }
-    
+
         .copyright a:hover {
             color: var(--primary);
             text-decoration: underline;
         }
-    
+
         /* Back to top button */
         .back-to-top {
             position: fixed;
@@ -505,92 +484,91 @@
             z-index: 999;
             box-shadow: var(--shadow-md);
         }
-    
+
         .back-to-top.visible {
             opacity: 1;
             visibility: visible;
         }
-    
+
         .back-to-top:hover {
             background: var(--primary-dark);
             transform: translateY(-5px);
         }
-    
+
         /* Animations */
         @keyframes fadeIn {
             from {
                 opacity: 0;
                 transform: translateY(20px);
             }
-    
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-    
+
         .footer-column {
             animation: fadeIn 0.6s ease forwards;
         }
-    
+
         .footer-column:nth-child(1) {
             animation-delay: 0.1s;
         }
-    
+
         .footer-column:nth-child(2) {
             animation-delay: 0.2s;
         }
-    
+
         .footer-column:nth-child(3) {
             animation-delay: 0.3s;
         }
-    
+
         .footer-column:nth-child(4) {
             animation-delay: 0.4s;
         }
-    
+
         /* Responsive */
         @media (max-width: 992px) {
             .container {
-                padding: 0 1.5rem;
-            }
-    
+        padding: 24px 1.5rem;
+    }
+
             .footer-grid {
                 gap: 2rem;
             }
         }
-    
+
         @media (max-width: 768px) {
             footer {
                 padding: 3rem 0 2rem;
             }
-    
+
             .footer-grid {
                 grid-template-columns: 1fr 1fr;
             }
-    
+
             .newsletter-form {
                 flex-direction: column;
             }
-    
+
             .newsletter-input,
             .newsletter-btn {
                 width: 100%;
             }
         }
-    
+
         @media (max-width: 576px) {
             .footer-grid {
                 grid-template-columns: 1fr;
             }
-    
+
             .footer-column h3::after {
                 width: 40px;
             }
         }
-    
-        /* Footer */
-        footer {
+         /* Footer */
+         footer {
             background: linear-gradient(135deg, var(--darker), var(--dark));
             background-color: #dcdcdc;
             color: var(--lighter);
@@ -598,7 +576,7 @@
             position: relative;
             overflow: hidden;
         }
-    
+
         footer::before {
             content: '';
             position: absolute;
@@ -608,19 +586,19 @@
             height: 4px;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
         }
-    
+
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 3rem;
             margin-bottom: 3rem;
         }
-    
+
         .footer-column {
             position: relative;
             z-index: 1;
         }
-    
+
         .footer-column h3 {
             font-family: var(--font-heading);
             font-size: 1.5rem;
@@ -629,7 +607,7 @@
             position: relative;
             display: inline-block;
         }
-    
+
         .footer-column h3::after {
             content: '';
             position: absolute;
@@ -640,21 +618,21 @@
             background: var(--primary);
             border-radius: 3px;
         }
-    
+
         .footer-column p {
             color: var(--gray);
             margin-bottom: 1.5rem;
             font-size: 0.95rem;
         }
-    
+
         .footer-links {
             list-style: none;
         }
-    
+
         .footer-links li {
             margin-bottom: 0.75rem;
         }
-    
+
         .footer-links a {
             color: var(--gray);
             text-decoration: none;
@@ -665,7 +643,7 @@
             position: relative;
             padding-left: 1rem;
         }
-    
+
         .footer-links a::before {
             content: '→';
             position: absolute;
@@ -674,131 +652,198 @@
             transition: var(--transition);
             color: var(--primary);
         }
-    
+
         .footer-links a:hover {
             color: var(--lighter);
             padding-left: 1.5rem;
         }
-    
+
         .footer-links a:hover::before {
             left: 0;
             opacity: 1;
         }
-        
-    .map-section {
+
+        input:focus ~ label, textarea:focus ~ label, input:valid ~ label, textarea:valid ~ label {
+    font-size: 0.75em;
+    color: #999;
+    top: -5px;
+    -webkit-transition: all 0.225s ease;
+    transition: all 0.225s ease;
+}
+
+.styled-input {
+    float: left;
+    width: 293px;
+    margin: 1rem 0;
+    position: relative;
+    border-radius: 4px;
+}
+
+@media only screen and (max-width: 768px){
+    .styled-input {
+        width:100%;
+    }
+}
+
+.styled-input label {
+    color: #373737;
+    padding: 1.3rem 30px 1rem 30px;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    -webkit-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+    pointer-events: none;
+}
+
+.styled-input.wide { 
+    width: 650px;
+    max-width: 100%;
+}
+
+input,
+textarea {
+    padding: 30px;
+    border: 0;
+    width: 100%;
+    font-size: 1rem;
+  background-color: #d3d3d3;
+    color: rgb(18, 18, 18);
+    border-radius: 4px;
+}
+
+input:focus,
+textarea:focus { outline: 0; }
+
+input:focus ~ span,
+textarea:focus ~ span {
+    width: 100%;
+    -webkit-transition: all 0.075s ease;
+    transition: all 0.075s ease;
+}
+
+textarea {
+    width: 100%;
+    min-height: 15em;
+}
+
+.input-container {
+    width: 650px;
+    max-width: 100%;
+    margin: 20px auto 25px auto;
+}
+
+.submit-btn {
+    float: right;
+    padding: 7px 35px;
+    border-radius: 60px;
+    display: inline-block;
+    background-color: #4b8cfb;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.06),
+              0 2px 10px 0 rgba(0,0,0,0.07);
+    -webkit-transition: all 300ms ease;
+    transition: all 300ms ease;
+}
+
+.submit-btn:hover {
+    transform: translateY(1px);
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.10),
+              0 1px 1px 0 rgba(0,0,0,0.09);
+}
+
+@media (max-width: 768px) {
+    .submit-btn {
+        width:100%;
+        float: none;
+        text-align:center;
+    }
+}
+
+input[type=checkbox] + label {
+  color: #ccc;
+  font-style: italic;
+} 
+
+input[type=checkbox]:checked + label {
+  color: #f00;
+  font-style: normal;
+}
+  /* Navigation wrapper */
+  .dropdown-wrapper {
       position: relative;
-      width: 100%;
-      height: 450px;
-      overflow: hidden;
+      display: inline-block;
     }
 
-    .map-section iframe {
+    .dropdown-wrapper > a {
+      text-decoration: none;
+      padding: 15px 20px;
+      display: inline-block;
+
+      color: rgb(44, 44, 44);
+    }
+
+    /* Mega Menu */
+    .mega-menu {
+      display: none;
       position: absolute;
-      top: 0;
+      top: 100%;
       left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-      z-index: 1;
+      width: 1000px;
+      background-color: #f5f5f5;
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      z-index: 999;
+      border-radius: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 20px;
     }
 
-    .map-section img {
-      position: absolute;
-      top: 40px;
-      left: 20px;
-      z-index: 2;
-      width: 60px;
-      height: 60px;
-      object-fit: contain;
-      border-radius: 50%;
-      padding: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    @media (max-width: 600px) {
-      .map-section img {
-        width: 50px;
-        height: 50px;
-        padding: 8px;
-        top: 40px;
-        left: 10px;
-      }
-    }
-    .nextfence-section {
-      background-color: #ffffff;
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 40px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      border-radius: 12px;
-    }
-
-    .nextfence-section h1 {
-      font-size: 32px;
-      color: #2c3e50;
-      margin-bottom: 20px;
-    }
-
-    .nextfence-section h1 span {
-      color: #000000;
-    }
-
-    .nextfence-section p {
-      font-size: 16px;
-      line-height: 1.7;
-      color: #555555;
-      margin-bottom: 16px;
-    }
-
-    .features-list {
-      margin-top: 30px;
-      padding-left: 20px;
-    }
-
-    .features-list li {
-      font-size: 16px;
-      color: #333333;
-      margin-bottom: 10px;
-      list-style: none;
-      position: relative;
-      padding-left: 25px;
-    }
-
-    .features-list li::before {
-      content: "✔";
-      color: #4CAF50;
-      position: absolute;
-      left: 0;
-      font-weight: bold;
-    }
-    h1 {
+    .dropdown-wrapper:hover .mega-menu {
       display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 24px;
     }
 
-    h1 img {
-      width: 50px;
-      height: 50px;
-      transition: transform 0.5s ease;
+    .mega-item {
+      width: 150px;
+      text-align: center;
+      cursor: pointer;
+      background: white;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
     }
 
-    h1 span {
-      opacity: 0;
-      transform: translateX(10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
+    .mega-item:hover {
+      transform: translateY(-3px);
+    }
+
+    .mega-item img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+    }
+
+    .mega-item p {
+      font-size: 14px;
       color: #333;
+      margin: 10px 0;
+      padding: 0 5px;
     }
 
-    h1:hover img {
-      transform: rotate(360deg);
+    /* Hide all items beyond 7 by default */
+    .mega-item:nth-child(n+8) {
+      display: none;
     }
 
-    h1:hover span {
-      opacity: 1;
-      transform: translateX(0);
+    /* Show all when expanded */
+    .mega-menu.expanded .mega-item {
+      display: block !important;
     }
+
     </style>
 </head>
 <body>
@@ -860,9 +905,9 @@
                         </div>
                     </li>
                     <li><a href="configue.html">Configurateur</a></li>
-                    <li><a href="#">Réalisations</a></li>
+                    <li><a href="realisation.html">Réalisations</a></li>
                     <li><a href="about.html">L’entreprise</a></li>
-                    <li><a href="#">Carrières</a></li>
+                    <li><a href="cariere.html">Carrières</a></li>
                     <li><a href="blog.html">Blog / Actualités</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <section><a href="#" class="btn-outline-turquoise">ESPACE PROS</a></section>
@@ -870,123 +915,171 @@
             </nav>
         </div>
     </header>
-    <br><br><br><br>
-    <section class="nextfence-section">
-        <h1>
-            <img src="icon.png" alt="Location Icon">
-            <span>NextFence</span>   </h1>
-        <p>
-            <strong>NextFence</strong> est une marque dédiée à la conception et à l’installation de clôtures modernes,
-            élégantes et durables.
-            Que vous soyez un particulier ou un professionnel, nous vous proposons des solutions sur mesure pour sécuriser
-            et embellir vos espaces extérieurs.
-        </p>
-    
-        <ul class="features-list">
-            <li><strong>Esthétique contemporaine :</strong> Design moderne et matériaux haut de gamme adaptés à
-                l’architecture actuelle.</li>
-            <li><strong>Sécurité et intimité :</strong> Protégez vos espaces tout en conservant une apparence épurée.</li>
-            <li><strong>Personnalisation :</strong> Couleurs, hauteurs, finitions... tout est pensé selon vos besoins.</li>
-            <li><strong>Durabilité :</strong> Matériaux résistants aux intempéries conçus pour durer sans entretien.</li>
-        </ul>
-    
-        <p>
-            <strong>NextFence</strong>, c’est le choix d’une clôture moderne, fiable et élégante, qui reflète votre style
-            tout en assurant votre tranquillité.
-        </p>
-        </section>
-    <section class="map-section">
-        <img src="icon.png" alt="Location Icon">
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d6640.435558463173!2d-7.3945912564298135!3d33.677424693201395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1s172B%20Hassania%20II%2C%20Mohammedia%2C%20Maroc!5e0!3m2!1sfr!2sma!4v1751551446411!5m2!1sfr!2sma"
-            loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-        </section>
-    <!-- Pied de page -->
-    <footer id="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <!-- Colonne 1 - À propos -->
-                <div class="footer-column">
-                    <h3>NextFence</h3>
-                    <p>Notre mission est d'apporter paix et sérénité dans votre vie quotidienne grâce à des solutions de
-                        bien-être innovantes.</p>
-    
-                    <div class="social-links">
-                        <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-    
-                <!-- Colonne 2 - Liens rapides -->
-                <div class="footer-column">
-                    <h3>Navigation</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Accueil</a></li>
-                        <li><a href="#">Produits</a></li>
-                        <li><a href="#">Configurateur</a></li>
-                        <li><a href="#">Réalisations</a></li>
-                        <li><a href="#">L'entreprise</a></li>
-                        <li><a href="#">Carrières</a></li>
-                        <li><a href="#">Blog/Actualités</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </div>
-    
-                <!-- Colonne 3 - Support -->
-                <div class="footer-column">
-                    <h3>Support</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Centre d'aide</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Contactez-nous</a></li>
-                        <li><a href="#">Politique de confidentialité</a></li>
-                        <li><a href="#">CGU</a></li>
-                        <li><a href="#">Accessibilité</a></li>
-                    </ul>
-                </div>
-    
-                <!-- Colonne 4 - Contact -->
-                <div class="footer-column">
-                    <h3>Contact</h3>
-    
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>123 Rue du Bien-être<br>75000 Paris, France</span>
-                        </div>
-    
-                        <div class="contact-item">
-                            <i class="fas fa-phone-alt"></i>
-                            <span>+33 1 23 45 67 89<br>Lun-Ven, 9h-18h</span>
-                        </div>
-    
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>contact@NextFence.com<br>support@NextFence.com</span>
-                        </div>
-                    </div>
-    
-    
-                </div>
-            </div>
-    
-            <div class="copyright">
-                <p>&copy;
-                    <script>document.write(new Date().getFullYear())</script> NextFence. Tous droits réservés. | <a
-                        href="#">Mentions
-                        légales</a> | <a href="#">Politique des cookies</a>
-                </p>
+    <section class="hero">
+        <div class="hero-overlay">
+            <div class="hero-content">
             </div>
         </div>
-    </footer>
+    </section>
+    <div class="contact-container">
+        <div class="contact-header">
+            <h1><i class="fa-solid fa-circle-info" style="color:#71aeef"></i> Contactez nous</h1>
+        </div>
     
-    <!-- Bouton retour en haut -->
-    <div class="back-to-top" id="backToTop" aria-label="Retour en haut">
-        <i class="fas fa-arrow-up"></i>
+        <div class="contact-info">
+            <div class="info-item">
+                <i class="fas fa-phone-alt" style="color:#006B46"></i>
+                <div class="info-text">+212 6 12 34 56 78</div>
+            </div>
+    
+            <div class="info-item">
+                <i class="fas fa-envelope" style="color: #8f7272;"></i>
+                <div class="info-text">contact@example.com</div>
+            </div>
+    
+            <div class="info-item">
+                <i class="fas fa-map-marker-alt" style="color: rgb(237, 112, 112);"></i>
+                <div class="info-text">123 Rue Example, Casablanca, Maroc</div>
+            </div>
+        </div>
     </div>
+    <div class="container">
+        <div class="row">
+        </div>
+        <div class="row">
+        </div>
+        <div class="row input-container">
+            <div class="col-xs-12">
+                <div class="styled-input wide">
+                    <input type="text" required />
+                    <label>Nom complet</label>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="styled-input">
+                    <input type="text" required />
+                    <label>Email</label>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="styled-input" style="float:right;">
+                    <input type="text" required />
+                    <label>Numéro de téléphone</label>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="styled-input wide">
+                    <textarea required></textarea>
+                    <label>Message</label>
+                </div>
+            </div>
+            <div class="g-recaptcha" data-sitekey="6LcLaHYrAAAAAPW0_jAx8wC4eX4LE5ALBxgKeTUO"></div><br>
+
+            <div class="col-xs-12">
+                <div ><button class="btn-outline-turquoise"  style="margin-top:20%;">Envoyer Le Message
+                </button></div>
+            </div>
+        </div>
+    </div>
+    
+<!-- Pied de page -->
+<footer id="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <!-- Colonne 1 - À propos -->
+            <div class="footer-column">
+                <h3>NextFence</h3>
+                <p>Notre mission est d'apporter paix et sérénité dans votre vie quotidienne grâce à des solutions de
+                    bien-être innovantes.</p>
+
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Colonne 2 - Liens rapides -->
+            <div class="footer-column">
+                <h3>Navigation</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Accueil</a></li>
+                    <li><a href="#">Produits</a></li>
+                    <li><a href="#">Configurateur</a></li>
+                    <li><a href="#">Réalisations</a></li>
+                    <li><a href="#">L'entreprise</a></li>
+                    <li><a href="#">Carrières</a></li>
+                    <li><a href="#">Blog/Actualités</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+         
+            <!-- Colonne 3 - Support -->
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Centre d'aide</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Contactez-nous</a></li>
+                    <li><a href="#">Politique de confidentialité</a></li>
+                    <li><a href="#">CGU</a></li>
+                    <li><a href="#">Accessibilité</a></li>
+                </ul>
+            </div>
+
+            <!-- Colonne 4 - Contact -->
+            <div class="footer-column">
+                <h3>Contact</h3>
+
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>123 Rue du Bien-être<br>75000 Paris, France</span>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+33 1 23 45 67 89<br>Lun-Ven, 9h-18h</span>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>contact@NextFence.com<br>support@NextFence.com</span>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy;
+                <script>document.write(new Date().getFullYear())</script> NextFence. Tous droits réservés. | <a
+                    href="#">Mentions
+                    légales</a> | <a href="#">Politique des cookies</a>
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- Bouton retour en haut -->
+<div class="back-to-top" id="backToTop" aria-label="Retour en haut">
+    <i class="fas fa-arrow-up"></i>
+</div>
+
 </body>
+<script>
+    const toggle = document.getElementById("menu-toggle");
+    const nav = document.querySelector("nav ul");
+
+    toggle.addEventListener("change", function () {
+        if (this.checked) {
+            nav.style.display = "flex";
+        } else {
+            nav.style.display = "none";
+        }
+    });
+</script>
 </html>

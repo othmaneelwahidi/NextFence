@@ -3,19 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Actualités - NextFence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Carrières</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-   
-   * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-    
-        body {
-            font-family: 'Roboto', sans-serif;
-        }
-    
+        
         header {
     background: white;
     border-bottom: 1px solid #ddd;
@@ -234,7 +226,7 @@
     padding: 10px 20px;
   }
   .container {
-        padding: 24px 1.5rem;
+        padding: 20px 1.5rem;
     }
   .hamburger {
     display: block;
@@ -298,82 +290,47 @@ input[type=checkbox] + label {
     margin-left: 92%;
     margin-top: -11%;
 }
-        .container2 {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+       
+        .container3 {
             max-width: 1000px;
             margin: 40px auto;
             padding: 0 20px;
         }
 
-        .bloc {
-            background: white;
-            border-left: 5px solid #009688;
-            padding: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s;
+        
+        section h2 {
+            color: #004080;
+            margin-bottom: 15px;
         }
 
-        .bloc:hover {
-            transform: translateY(-5px);
+        ul.offres {
+            list-style-type: none;
         }
 
-        .bloc h2 {
-            margin-top: 0;
-            color: #009688;
+        ul.offres li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
         }
 
-        .bloc p {
-            color: #555;
-            line-height: 1.6;
+        ul.offres li:last-child {
+            border-bottom: none;
         }
 
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 60px;
-        }
-        .h1 {
-      font-size: 36px;
-      justify-content: center;
-      text-align: center;
-      align-items: center;
-      color: #333;
-      padding-bottom: 1%;
-      position: relative;
-      display: inline-block;
-    }
-
-    /* Invisible full text to reserve space */
-    .h1::after {
-      content: "Actualités & Conseils";
-      visibility: hidden;
-      display: block;
-    }
-
-
-    .letter {
-      display: inline-block;
-      opacity: 0;
-      transition: opacity 0.05s;
-    }
-    #animated-title {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-
-
-      /* Footer */
-      footer {
+         /* Footer */
+         footer {
             background: linear-gradient(135deg, var(--darker), var(--dark));
             background-color: #dcdcdc;
             color: var(--lighter);
@@ -689,6 +646,7 @@ input[type=checkbox] + label {
             .container {
         padding: 24px 1.5rem;
     }
+
             .footer-grid {
                 gap: 2rem;
             }
@@ -726,6 +684,7 @@ input[type=checkbox] + label {
 </head>
 
 <body>
+
     <header>
         <div class="container">
             <div class="logo">
@@ -795,164 +754,120 @@ input[type=checkbox] + label {
             </nav>
         </div>
     </header>
-   <br><br><br><br><br><br>
-<h1 class="h1">
-    <span id="animated-title"></span>
-</h1>
+        <h1>Carrières</h1>
+        <p>Rejoignez notre équipe dynamique et engagée</p>
 
-   
-    <div class="container2">
 
-        <div class="bloc">
-            <h2>🛠️ Conseils d'installation de votre clôture</h2>
-            <p>Découvrez nos guides pratiques pour bien poser votre clôture : préparation du sol, choix des poteaux,
-                installation des panneaux, et conseils pour garantir une solidité durable. Que vous soyez bricoleur ou
-                professionnel, nous vous accompagnons à chaque étape.</p>
+    <div class="container3">
+
+        <section>
+            <h2>Offres d'emploi</h2>
+            <ul class="offres">
+                <li><strong>Développeur Web Full Stack</strong> – Casablanca</li>
+                <li><strong>Chargé(e) de Communication</strong> – Rabat</li>
+                <li><strong>Technicien Support IT</strong> – Marrakech</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Politique RH</h2>
+            <p>
+                Notre politique RH repose sur l’épanouissement professionnel de nos collaborateurs.
+                Nous favorisons la formation continue, la mobilité interne et un environnement de travail inclusif et
+                respectueux.
+                Rejoindre notre entreprise, c’est intégrer une équipe où le bien-être et l’innovation sont au cœur de
+                nos valeurs.
+            </p>
+        </section>
+
+    </div>
+<!-- Pied de page -->
+<footer id="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <!-- Colonne 1 - À propos -->
+            <div class="footer-column">
+                <h3>NextFence</h3>
+                <p>Notre mission est d'apporter paix et sérénité dans votre vie quotidienne grâce à des solutions de
+                    bien-être innovantes.</p>
+
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Colonne 2 - Liens rapides -->
+            <div class="footer-column">
+                <h3>Navigation</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Accueil</a></li>
+                    <li><a href="#">Produits</a></li>
+                    <li><a href="#">Configurateur</a></li>
+                    <li><a href="#">Réalisations</a></li>
+                    <li><a href="#">L'entreprise</a></li>
+                    <li><a href="#">Carrières</a></li>
+                    <li><a href="#">Blog/Actualités</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Colonne 3 - Support -->
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Centre d'aide</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Contactez-nous</a></li>
+                    <li><a href="#">Politique de confidentialité</a></li>
+                    <li><a href="#">CGU</a></li>
+                    <li><a href="#">Accessibilité</a></li>
+                </ul>
+            </div>
+
+            <!-- Colonne 4 - Contact -->
+            <div class="footer-column">
+                <h3>Contact</h3>
+
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>123 Rue du Bien-être<br>75000 Paris, France</span>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+33 1 23 45 67 89<br>Lun-Ven, 9h-18h</span>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>contact@NextFence.com<br>support@NextFence.com</span>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
 
-        <div class="bloc">
-            <h2>🆕 Nouveautés Produits</h2>
-            <p>Nous enrichissons régulièrement notre gamme avec de nouveaux modèles de clôtures modernes, design et
-                durables. Restez informé des dernières tendances en matière de clôtures aluminium, PVC et grillagées.
+        <div class="copyright">
+            <p>&copy;
+                <script>document.write(new Date().getFullYear())</script> NextFence. Tous droits réservés. | <a
+                    href="#">Mentions
+                    légales</a> | <a href="#">Politique des cookies</a>
             </p>
         </div>
-
-        <div class="bloc">
-            <h2>🎪 Présence sur les salons professionnels</h2>
-            <p>NextFence participe aux salons du bâtiment et de l’aménagement extérieur à travers toute la France. Venez
-                découvrir nos produits, rencontrer notre équipe et bénéficier de démonstrations en direct !</p>
-        </div>
-
     </div>
+</footer>
 
-    <!-- Pied de page -->
-    <footer id="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <!-- Colonne 1 - À propos -->
-                <div class="footer-column">
-                    <h3>NextFence</h3>
-                    <p>Notre mission est d'apporter paix et sérénité dans votre vie quotidienne grâce à des solutions de
-                        bien-être innovantes.</p>
-    
-                    <div class="social-links">
-                        <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-    
-                <!-- Colonne 2 - Liens rapides -->
-                <div class="footer-column">
-                    <h3>Navigation</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Accueil</a></li>
-                        <li><a href="#">Produits</a></li>
-                        <li><a href="#">Configurateur</a></li>
-                        <li><a href="#">Réalisations</a></li>
-                        <li><a href="#">L'entreprise</a></li>
-                        <li><a href="#">Carrières</a></li>
-                        <li><a href="#">Blog/Actualités</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </div>
-    
-                <!-- Colonne 3 - Support -->
-                <div class="footer-column">
-                    <h3>Support</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Centre d'aide</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Contactez-nous</a></li>
-                        <li><a href="#">Politique de confidentialité</a></li>
-                        <li><a href="#">CGU</a></li>
-                        <li><a href="#">Accessibilité</a></li>
-                    </ul>
-                </div>
-    
-                <!-- Colonne 4 - Contact -->
-                <div class="footer-column">
-                    <h3>Contact</h3>
-    
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>123 Rue du Bien-être<br>75000 Paris, France</span>
-                        </div>
-    
-                        <div class="contact-item">
-                            <i class="fas fa-phone-alt"></i>
-                            <span>+33 1 23 45 67 89<br>Lun-Ven, 9h-18h</span>
-                        </div>
-    
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>contact@NextFence.com<br>support@NextFence.com</span>
-                        </div>
-                    </div>
-    
-    
-                </div>
-            </div>
-    
-            <div class="copyright">
-                <p>&copy;
-                    <script>document.write(new Date().getFullYear())</script> NextFence. Tous droits réservés. | <a
-                        href="#">Mentions
-                        légales</a> | <a href="#">Politique des cookies</a>
-                </p>
-            </div>
-        </div>
-    </footer>
-    
-    <!-- Bouton retour en haut -->
-    <div class="back-to-top" id="backToTop" aria-label="Retour en haut">
-        <i class="fas fa-arrow-up"></i>
-    </div>
-
-
+<!-- Bouton retour en haut -->
+<div class="back-to-top" id="backToTop" aria-label="Retour en haut">
+    <i class="fas fa-arrow-up"></i>
+</div>
 </body>
-<script>
-    const text = "Actualités / Conseils";
-    const container = document.getElementById("animated-title");
-
-    let index = 0;
-    let direction = 1; // 1 = typing, -1 = deleting
-
-    function updateText() {
-        container.innerHTML = "";
-
-        const visibleText = text.substring(0, index);
-
-        for (let i = 0; i < visibleText.length; i++) {
-            const span = document.createElement("span");
-            span.textContent = visibleText[i];
-            span.className = "letter";
-            span.style.opacity = 1;
-            container.appendChild(span);
-        }
-
-        index += direction;
-
-        if (index > text.length) {
-            direction = -1;
-            setTimeout(updateText, 1500);
-            return;
-        }
-
-        if (index < 0) {
-            direction = 1;
-            setTimeout(updateText, 800);
-            return;
-        }
-
-        setTimeout(updateText, 100);
-    }
-
-    updateText();
-</script>
 <script>
     const toggle = document.getElementById("menu-toggle");
     const nav = document.querySelector("nav ul");
