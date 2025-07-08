@@ -851,6 +851,153 @@
                 width: 40px;
             }
         }
+        .fence-tabs {
+  height: 500vh;
+  background-color: #111;
+}
+
+.fence-tabs__wrapper {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.fence-tabs__left,
+.fence-tabs__right {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Text content base */
+.fence-tabs__content {
+  position: absolute;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.2s ease-in-out, transform 1.2s ease-in-out;
+  padding: 2rem;
+  color: white;
+  z-index: 2;
+  margin-top: 70%;
+  font-size: 40px;
+}
+
+.fence-tabs__content.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Video base */
+.fence-tabs__video {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 1.2s ease-in-out, transform 1.4s ease-in-out;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.fence-tabs__video.active {
+  opacity: 1;
+  transform: translateY(0);
+  z-index: 2;
+  pointer-events: auto;
+}
+
+.fence-tabs__video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+/* Tablets (landscape < 992px) */
+@media screen and (max-width: 991px) {
+  .fence-tabs__wrapper {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .fence-tabs__left,
+  .fence-tabs__right {
+    height: 50vh;
+  }
+
+  .fence-tabs__video {
+    transform: translateY(40px);
+  }
+
+  .fence-tabs__video video {
+    border-radius: 0.75rem;
+  }
+}
+
+/* Mobile (portrait < 576px) */
+@media screen and (max-width: 576px) {
+  .fence-tabs__wrapper {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .fence-tabs__left,
+  .fence-tabs__right {
+    height: 50vh;
+  }
+
+  .fence-tabs__content {
+    padding: 1rem;
+    text-align: center;
+    transform: translateY(20px);
+  }
+
+  .fence-tabs__video {
+    transform: translateY(30px);
+  }
+
+  .fence-tabs__video video {
+    border-radius: 0.5rem;
+  }
+}
+
+.light-button {
+      position: relative;
+      display: inline-block;
+      padding: 15px 40px;
+      font-size: 18px;
+      color: #fff;
+      background: #222;
+      border: 2px solid #444;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .light-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0.1) 100%
+      );
+      transform: skewX(-20deg);
+      animation: lightSweep 2s linear infinite;
+    }
+
+    @keyframes lightSweep {
+      0% {
+        left: -75%;
+      }
+      100% {
+        left: 125%;
+      }
+    }
     </style>
     
 </head>
@@ -988,6 +1135,61 @@
             </div>
         </div>
     </section>
+    <section class="fence-tabs">
+      <div class="fence-tabs__wrapper">
+        <div class="fence-tabs__left">
+          <div class="fence-tabs__content is-1">
+            <h2>Clôture Design</h2>
+            <p>Robust & elegant fences for all environments.</p>
+            <button class="light-button"><a href="" style="font-weight: 600;color:white;text-decoration: none;">Voir plus</a></button>
+          </div>
+          <div class="fence-tabs__content is-2">
+            <h2>Grille de Sécurité</h2>
+            <p>Keep your space secure with style.</p>
+                   <button class="light-button"><a href="" style="font-weight: 600;color:white;text-decoration: none;">Voir plus</a></button>
+   
+          </div>
+          <div class="fence-tabs__content is-3">
+            <h2>Portail Automatique</h2>
+            <p>Convenient access with premium gates.</p>
+                   <button class="light-button"><a href="" style="font-weight: 600;color:white;text-decoration: none;">Voir plus</a></button>
+   
+          </div>
+          <div class="fence-tabs__content is-4">
+            <h2>Motorisation Intelligente</h2>
+            <p>Smart automation for daily comfort.</p>
+                   <button class="light-button"><a href="" style="font-weight: 600;color:white;text-decoration: none;">Voir plus</a></button>
+   
+          </div>
+        </div>
+    
+        <div class="fence-tabs__right">
+          <div class="fence-tabs__video is-1">
+            <video autoplay loop muted playsinline>
+              <source src="video1.mp4" type="video/mp4" />
+            </video>
+          </div>
+         
+          <div class="fence-tabs__video is-2">
+            <video autoplay loop muted playsinline>
+              <source src="video2.mp4" type="video/mp4" />
+            </video>
+          </div>
+         
+          <div class="fence-tabs__video is-3">
+            <video autoplay loop muted playsinline>
+              <source src="video3.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="fence-tabs__video is-1">
+            <video autoplay loop muted playsinline>
+              <source src="video1.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+    
     <section class="about-section">
         <div class="about-container">
           <div class="about-text">
@@ -1110,4 +1312,29 @@
     }
   });
 </script>
+<script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const contents = document.querySelectorAll(".fence-tabs__content");
+    const videos = document.querySelectorAll(".fence-tabs__video");
+    const total = contents.length;
+    const sectionHeight = window.innerHeight;
+
+    window.addEventListener("scroll", () => {
+      const scrollY = window.scrollY;
+      const index = Math.min(
+        total - 1,
+        Math.floor(scrollY / sectionHeight)
+      );
+
+      contents.forEach((el, i) => {
+        el.classList.toggle("active", i === index);
+      });
+      videos.forEach((el, i) => {
+        el.classList.toggle("active", i === index);
+      });
+    });
+  });
+</script>
+
 </html>
